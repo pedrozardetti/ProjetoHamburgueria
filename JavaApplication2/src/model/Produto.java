@@ -9,6 +9,7 @@ package model;
  * @author pedro
  */
 public class Produto {
+    private int id;
     private String nome;
     private Double preco;
     private String descricao;
@@ -17,10 +18,25 @@ public class Produto {
     }
     
     
-    public Produto(String nome, Double preco, String descricao) {
+    public Produto(int id, String nome, Double preco, String descricao) {
+        this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+    }
+    
+     public Produto(String nome, Double preco, String descricao) {
+        this.nome = nome;
+        this.preco = preco;
+        this.descricao = descricao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
