@@ -6,8 +6,17 @@ package view;
 
 import controller.ProdutoDao;
 import controller.UsuarioDao;
+import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
 
@@ -48,6 +57,12 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jp1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
         jp2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jp3 = new javax.swing.JPanel();
@@ -59,6 +74,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
+        fotoField = new javax.swing.JLabel();
+        btnFoto = new javax.swing.JButton();
         jp4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -83,6 +100,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(128, 0, 0));
@@ -274,7 +296,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Cadastrar Pedido");
+        jLabel1.setText("MY ORDER");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -285,6 +307,78 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel5.setForeground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("✔ Delivery");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("🛎 Pickup");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("R$45");
+
+        jButton3.setBackground(new java.awt.Color(0, 153, 0));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Confirm Order");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Nº do Pedido");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel18))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(122, 122, 122)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+        );
+
         javax.swing.GroupLayout jp1Layout = new javax.swing.GroupLayout(jp1);
         jp1.setLayout(jp1Layout);
         jp1Layout.setHorizontalGroup(
@@ -292,18 +386,27 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             .addGroup(jp1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 800, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp1Layout.createSequentialGroup()
+                        .addGap(870, 870, 870)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jp1Layout.setVerticalGroup(
             jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 725, Short.MAX_VALUE))
-            .addGroup(jp1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(168, Short.MAX_VALUE))
+            .addGroup(jp1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 820));
@@ -382,6 +485,20 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jp3.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, -1, -1));
+        jp3.add(fotoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 240, 170));
+
+        btnFoto.setText("Carregar Foto");
+        btnFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFotoMouseClicked(evt);
+            }
+        });
+        btnFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFotoActionPerformed(evt);
+            }
+        });
+        jp3.add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 240, 60));
 
         getContentPane().add(jp3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 820));
 
@@ -669,7 +786,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jp1.setVisible(false);
         jp2.setVisible(false);
         jp4.setVisible(false);
-
+        
         ProdutoDao produtoDao = new ProdutoDao();
         produtoDao.criarTabela();
     }//GEN-LAST:event_tab3MouseClicked
@@ -679,14 +796,14 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jp1.setVisible(false);
         jp2.setVisible(false);
         jp3.setVisible(false);
-
+        
         ProdutoDao produtoDao = new ProdutoDao();
         List<Produto> produtos = produtoDao.listProduto();
-
+        
         DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Nome", "Preço", "Descrição"}, 0);
-
+        
         JTable.setModel(model);
-
+        
         for (Produto produto : produtos) {
             model.addRow(new Object[]{produto.getId(), produto.getNome(), produto.getPreco(), produto.getDescricao()});
         }
@@ -704,13 +821,21 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         String nome = nomeField.getText();
         Double preco = Double.parseDouble(precoField.getText());
         String desc = descField.getText();
-
-        Produto produto = new Produto(nome, preco, desc);
+        
+        FileInputStream file = null;
+        try {
+            System.out.println(getCaminho());
+            file = new FileInputStream(getCaminho());
+        } catch (FileNotFoundException ex) {
+            System.out.println("O caminho não funcionou!");
+        }
+        
+        Produto produto = new Produto(nome, preco, desc, file, 0);
         ProdutoDao produtoDao = new ProdutoDao();
-
+        
         try {
             produtoDao.adicionarProduto(produto);
-
+            
             nomeField.setText("");
             precoField.setText("");
             descField.setText("");
@@ -724,17 +849,13 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             
         }
-
+        
 
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void descFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descFieldMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_descFieldMouseClicked
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabel9MouseClicked
 
     private void deletarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarBtnActionPerformed
         // TODO add your handling code here:
@@ -750,7 +871,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
     private void procurarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_procurarBtnMouseClicked
         ProdutoDao produtoDao = new ProdutoDao();
-
+        
         Produto produto = produtoDao.procurarProduto(Integer.parseInt(searchId.getText()));
         if (produto == null) {
             JOptionPane.showMessageDialog(null,
@@ -760,7 +881,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         searchedName.setText(produto.getNome());
         searchedPreco.setText(String.valueOf(produto.getPreco()));
         searchedDescricao.setText(produto.getDescricao());
-
+        
 
     }//GEN-LAST:event_procurarBtnMouseClicked
 
@@ -784,7 +905,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
     private void deletarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarBtnMouseClicked
         ProdutoDao produtoDao = new ProdutoDao();
-
+        
         try {
             produtoDao.deletarProduto(Integer.parseInt(searchId.getText()));
             tab4MouseClicked(evt);
@@ -795,15 +916,57 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,
                     "O produto foi deletado com sucesso!", "Operação bem sucedida!",
                     JOptionPane.PLAIN_MESSAGE);
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Não foi possível remover o produto", "Erro de Operação",
                     JOptionPane.WARNING_MESSAGE);
         }
-
+        
 
     }//GEN-LAST:event_deletarBtnMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
+
+    }//GEN-LAST:event_btnFotoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        btnFotoMouseClicked(evt);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFotoMouseClicked
+        String path = null;
+        try {
+            JFileChooser filechooser = new JFileChooser();
+            FileNameExtensionFilter filter
+                    = new FileNameExtensionFilter("image files", "pnj", "jpg", "bmp", "png");
+            filechooser.setFileFilter(filter);
+            filechooser.setCurrentDirectory(new File("."));
+            int result = filechooser.showOpenDialog(null);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                path = filechooser.getSelectedFile().getAbsolutePath();
+                System.out.println(path);
+                this.carregar_imagem_autosize(path);
+            } else if (result == JFileChooser.CANCEL_OPTION) {
+                return;
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnFotoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -842,22 +1005,58 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void carregar_imagem_autosize(String CaminhoDaImagem) {
+        setCaminho(CaminhoDaImagem);
+        int lastIndex = CaminhoDaImagem.lastIndexOf("\\") + 1;
+        CaminhoDaImagem = CaminhoDaImagem.substring(lastIndex);
+        String caminho = "/imagesprodutos/" + CaminhoDaImagem;
+        
+        
+        System.out.println("Entrou no método");
+        ImageIcon imagem = new ImageIcon(getClass().getResource(caminho));
+        System.out.println("Pegou Imagem com sucesso!");
+        Image modelImagem = imagem.getImage();
+        Image ModelEscalas = modelImagem.getScaledInstance(this.fotoField.getWidth(), this.fotoField.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon ImagemAutoSize = new ImageIcon(ModelEscalas);
+        System.out.println(ImagemAutoSize);
+        this.fotoField.setIcon(ImagemAutoSize);
+        
+    }
+    
+    public String getCaminho() {
+        return caminho;
+    }
+    
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
+    
+    private String caminho;
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTable;
     private javax.swing.JButton atualizarBtn;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnFoto;
     private javax.swing.JLabel btnSair;
     private javax.swing.JButton deletarBtn;
     private javax.swing.JTextField descField;
+    private javax.swing.JLabel fotoField;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -870,6 +1069,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;

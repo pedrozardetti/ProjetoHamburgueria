@@ -4,31 +4,37 @@
  */
 package model;
 
+import java.io.FileInputStream;
+
 /**
  *
  * @author pedro
  */
 public class Produto {
+
     private int id;
     private String nome;
-    private Double preco;
+    private double preco;
     private String descricao;
+    private FileInputStream foto;
+    private int tamanho;
 
-    public Produto() {
-    }
-    
-    
-    public Produto(int id, String nome, Double preco, String descricao) {
+
+    public Produto(int id, String nome, Double preco, String descricao, FileInputStream foto, int tamanho) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.foto = foto;
+        this.tamanho = tamanho;
     }
-    
-     public Produto(String nome, Double preco, String descricao) {
+
+    public Produto(String nome, Double preco, String descricao, FileInputStream foto, int tamanho) {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.foto = foto;
+        this.tamanho = tamanho;
     }
 
     public int getId() {
@@ -63,6 +69,21 @@ public class Produto {
         this.descricao = descricao;
     }
     
+    public FileInputStream getFoto() {
+        return foto;
+    }
+
+    public void setFoto(FileInputStream foto) {
+        this.foto = foto;
+    }
+
+    public int getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
+    }
     
-    
+
 }

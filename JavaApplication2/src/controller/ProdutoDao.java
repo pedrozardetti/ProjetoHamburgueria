@@ -18,7 +18,7 @@ import model.Produto;
 public class ProdutoDao extends ConectarDao {
 
     public void criarTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS PRODUTO (id INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(50) NOT NULL, PRECO DOUBLE NOT NULL, DESCRICAO VARCHAR (255) NOT NULL)";
+        String sql = "CREATE TABLE IF NOT EXISTS PRODUTO (id INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(50) NOT NULL, PRECO DOUBLE NOT NULL, DESCRICAO VARCHAR (255) NOT NULL, FOTO LONGBLOB NOT NULL)";
 
         try {
             Connection con = Conectar();
@@ -33,7 +33,7 @@ public class ProdutoDao extends ConectarDao {
 
     public void adicionarProduto(Produto produto) {
 
-        String sql = "INSERT INTO PRODUTO (NOME, PRECO, DESCRICAO) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO PRODUTO (NOME, PRECO, DESCRICAO, FOTO) VALUES (?, ?, ?, ?)";
 
         try {
             Connection con = Conectar();
@@ -41,6 +41,7 @@ public class ProdutoDao extends ConectarDao {
             preparedStatement.setString(1, produto.getNome());
             preparedStatement.setDouble(2, produto.getPreco());
             preparedStatement.setString(3, produto.getDescricao());
+            preparedStatement.setBlob(4, produto.getFoto());
             preparedStatement.execute();
             System.out.println("Inserido com sucesso!");
             con.close();
@@ -70,7 +71,7 @@ public class ProdutoDao extends ConectarDao {
                 double preco = resultSet.getDouble("preco");
                 String descricao = resultSet.getString("descricao");
 
-                produtos.add(new Produto(id, nome, preco, descricao));
+                produtos.add(new Produto(id, nome, preco, descricao, null, 0));
             }
 
             System.out.println("Sucesso em selecionar e colocar na lista!");
@@ -92,7 +93,7 @@ public class ProdutoDao extends ConectarDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                produto = new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"));
+                produto = new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), null, 0);
 
             }
             return produto;
@@ -141,4 +142,6 @@ public class ProdutoDao extends ConectarDao {
         }
         
     }
+    
+    
 }

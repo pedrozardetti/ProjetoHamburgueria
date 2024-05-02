@@ -14,25 +14,6 @@ import java.sql.*;
  */
 public class UsuarioDao extends ConectarDao {
 
-    public void criarUsuario(Usuario usuario) {
-        String SQL = "INSERT INTO ADMIN (EMAIL, SENHA) VALUES (?,?)";
-
-        try {
-            Connection con = Conectar();
-            PreparedStatement preparedStatement = con.prepareStatement(SQL);
-            preparedStatement.setString(1, usuario.getUsername());
-            preparedStatement.setString(2, usuario.getSenha());
-            preparedStatement.execute();
-            
-            System.out.println("Insert feito com sucesso!");
-            
-            con.close();
-            
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public boolean fazerLogin(Usuario usuario) {
         String SQL = "SELECT * FROM ADMIN WHERE EMAIL = ?";
 
