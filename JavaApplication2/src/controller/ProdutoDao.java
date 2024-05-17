@@ -4,12 +4,15 @@
  */
 package controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Produto;
+import model.enums.TipoProduto;
 
 /**
  *
@@ -18,7 +21,7 @@ import model.Produto;
 public class ProdutoDao extends ConectarDao {
 
     public void criarTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS PRODUTO (id INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(50) NOT NULL, PRECO DOUBLE NOT NULL, DESCRICAO VARCHAR (255) NOT NULL, FOTO LONGBLOB NOT NULL)";
+        String sql = "CREATE TABLE IF NOT EXISTS PRODUTO (id INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(50) NOT NULL, PRECO DOUBLE NOT NULL, DESCRICAO VARCHAR (255) NOT NULL, TIPO ENUM('HAMBURGUER', 'ACOMPANHAMENTO', 'BEBIDA') NOT NULL, FOTO LONGBLOB NOT NULL)";
 
         try {
             Connection con = Conectar();
@@ -33,7 +36,7 @@ public class ProdutoDao extends ConectarDao {
 
     public void adicionarProduto(Produto produto) {
 
-        String sql = "INSERT INTO PRODUTO (NOME, PRECO, DESCRICAO, FOTO) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO PRODUTO (NOME, PRECO, DESCRICAO, TIPO, FOTO) VALUES (?, ?, ?, ?, ?)";
 
         try {
             Connection con = Conectar();
@@ -41,7 +44,8 @@ public class ProdutoDao extends ConectarDao {
             preparedStatement.setString(1, produto.getNome());
             preparedStatement.setDouble(2, produto.getPreco());
             preparedStatement.setString(3, produto.getDescricao());
-            preparedStatement.setBlob(4, produto.getFoto());
+            preparedStatement.setString(4, produto.getTipo().name());
+            preparedStatement.setBlob(5, produto.getFoto());
             preparedStatement.execute();
             System.out.println("Inserido com sucesso!");
             con.close();
@@ -71,7 +75,7 @@ public class ProdutoDao extends ConectarDao {
                 double preco = resultSet.getDouble("preco");
                 String descricao = resultSet.getString("descricao");
 
-                produtos.add(new Produto(id, nome, preco, descricao, null, 0));
+                produtos.add(new Produto(id, nome, preco, descricao, null, null, 0));
             }
 
             System.out.println("Sucesso em selecionar e colocar na lista!");
@@ -93,9 +97,9 @@ public class ProdutoDao extends ConectarDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                produto = new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), null, 0);
+                produto = new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), TipoProduto.valueOf(resultSet.getString("Tipo")), null, 0);
 
-            }
+            } 
             return produto;
 
         } catch (Exception e) {
@@ -103,6 +107,87 @@ public class ProdutoDao extends ConectarDao {
             return null;
         }
 
+    }
+    
+    public List<Produto> selectHamburgueres() {
+    String sql = "SELECT * FROM PRODUTO WHERE TIPO = 'HAMBURGUER'";
+    List<Produto> lista = new ArrayList<>();
+    
+    try {
+        Connection con = Conectar();
+        PreparedStatement preparedStamement = con.prepareStatement(sql);
+        ResultSet resultSet = preparedStamement.executeQuery();
+        
+        while (resultSet.next()) {
+            Blob blob = resultSet.getBlob("FOTO");
+            int blobLength = (int) blob.length();  
+            byte[] blobAsBytes = blob.getBytes(1, blobLength);
+
+            
+            blob.free();
+
+            ByteArrayInputStream bis = new ByteArrayInputStream(blobAsBytes);
+            lista.add(new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), TipoProduto.valueOf(resultSet.getString("Tipo")), bis, blobLength));
+        }
+        
+        System.out.println("Deu certo");
+        return lista;
+    } catch (Exception e) {
+        System.out.println("Não conseguiu pegar os produtos!");
+        e.printStackTrace();
+        return Collections.emptyList();
+    }
+}
+
+    
+    public List<Produto> selectAcompanhamentos() {
+        
+        String sql = "SELECT * FROM PRODUTO WHERE TIPO = 'ACOMPANHAMENTO'";
+        List<Produto> lista = new ArrayList<>();
+        
+        try {
+            Connection con = Conectar();
+            PreparedStatement preparedStamement = con.prepareStatement(sql);
+            ResultSet resultSet = preparedStamement.executeQuery();
+            
+           while (resultSet.next()) {
+            Blob blob = resultSet.getBlob("FOTO");
+            int blobLength = (int) blob.length();  
+            byte[] blobAsBytes = blob.getBytes(1, blobLength);
+
+            
+            blob.free();
+
+            ByteArrayInputStream bis = new ByteArrayInputStream(blobAsBytes);
+            lista.add(new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), TipoProduto.valueOf(resultSet.getString("Tipo")), bis, blobLength));
+        }
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Não conseguiu pegar os produtos!");
+            return Collections.emptyList();
+        }
+        
+    }
+    
+    public List<Produto> selectBebida() {
+        
+        String sql = "SELECT * FROM PRODUTO WHERE TIPO = BEBIDA";
+        List<Produto> lista = new ArrayList<>();
+        
+        try {
+            Connection con = Conectar();
+            PreparedStatement preparedStamement = con.prepareStatement(sql);
+            ResultSet resultSet = preparedStamement.executeQuery();
+            
+            while (resultSet.next()) {
+                lista.add(new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), TipoProduto.valueOf(resultSet.getString("Tipo")), (FileInputStream)resultSet.getBlob("Foto"), 0));
+            }
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Não conseguiu pegar os produtos!");
+            return Collections.emptyList();
+        }
+        
     }
 
     public void atualizarProduto(Integer id, String nome, double preco, String descricao) {
