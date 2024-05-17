@@ -78,6 +78,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         jp2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
@@ -304,12 +305,12 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                .addGap(215, 215, 215)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, -1));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 1100));
 
         jp1.setBackground(new java.awt.Color(255, 255, 255));
         jp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -318,7 +319,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("MY ORDER");
-        jp1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 0, -1, 95));
+        jp1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 80));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -406,25 +407,31 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jp1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 730, 260));
+        jp1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 730, 260));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jp1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 750, 280));
+        jp1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 750, 280));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star (2).png"))); // NOI18N
         jLabel19.setText("Hambúrgueres");
-        jp1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 30));
+        jp1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star (2).png"))); // NOI18N
-        jLabel33.setText("Acompanhamentos");
-        jp1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 30));
+        jLabel33.setText("Bebidas");
+        jp1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 710, -1, 30));
 
-        getContentPane().add(jp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 820));
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star (2).png"))); // NOI18N
+        jLabel34.setText("Acompanhamentos");
+        jp1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, 30));
+
+        getContentPane().add(jp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 1100));
 
         jp2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -491,12 +498,13 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 285, Short.MAX_VALUE))
+                .addGap(0, 475, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 0, 1050, -1));
+        getContentPane().add(jp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 0, 1050, 1100));
 
         jp3.setBackground(new java.awt.Color(255, 255, 255));
+        jp3.setPreferredSize(new java.awt.Dimension(1331, 1010));
         jp3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -574,9 +582,10 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jp3.add(tipoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 120, 40));
 
-        getContentPane().add(jp3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 820));
+        getContentPane().add(jp3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 1100));
 
         jp4.setBackground(new java.awt.Color(255, 255, 255));
+        jp4.setMinimumSize(new java.awt.Dimension(1331, 1010));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -825,7 +834,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        getContentPane().add(jp4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 820));
+        getContentPane().add(jp4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 1100));
 
         pack();
         setLocationRelativeTo(null);
@@ -1087,7 +1096,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         }
 
-        atualizarProdutoPainel(evt);
+        
 
 
     }//GEN-LAST:event_btnCadastrarMouseClicked
@@ -1141,7 +1150,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         produtoDao.atualizarProduto(Integer.parseInt(searchId.getText()), searchedName.getText(), Double.parseDouble(searchedPreco.getText()), searchedDescricao.getText());
         tab4MouseClicked(evt);
 
-        atualizarProdutoPainel(evt);
+        
     }//GEN-LAST:event_atualizarBtnMouseClicked
 
     private void deletarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarBtnMouseClicked
@@ -1164,7 +1173,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
         }
 
-        atualizarProdutoPainel(evt);
+       
 
 
     }//GEN-LAST:event_deletarBtnMouseClicked
@@ -1312,6 +1321,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
