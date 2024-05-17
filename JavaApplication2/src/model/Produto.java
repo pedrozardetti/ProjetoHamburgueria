@@ -5,6 +5,8 @@
 package model;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
+import model.enums.TipoProduto;
 
 /**
  *
@@ -16,23 +18,27 @@ public class Produto {
     private String nome;
     private double preco;
     private String descricao;
-    private FileInputStream foto;
+    private TipoProduto tipo;
+    private InputStream foto;
     private int tamanho;
+    
+    
 
-
-    public Produto(int id, String nome, Double preco, String descricao, FileInputStream foto, int tamanho) {
+    public Produto(int id, String nome, Double preco, String descricao, TipoProduto tipo, InputStream foto, int tamanho) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.tipo = tipo;
         this.foto = foto;
         this.tamanho = tamanho;
     }
 
-    public Produto(String nome, Double preco, String descricao, FileInputStream foto, int tamanho) {
+    public Produto(String nome, Double preco, String descricao, TipoProduto tipo, FileInputStream foto, int tamanho) {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.tipo = tipo;
         this.foto = foto;
         this.tamanho = tamanho;
     }
@@ -44,6 +50,15 @@ public class Produto {
     public void setId(int id) {
         this.id = id;
     }
+
+    public TipoProduto getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoProduto tipo) {
+        this.tipo = tipo;
+    }
+    
 
     public String getNome() {
         return nome;
@@ -69,11 +84,11 @@ public class Produto {
         this.descricao = descricao;
     }
     
-    public FileInputStream getFoto() {
+    public InputStream getFoto() {
         return foto;
     }
 
-    public void setFoto(FileInputStream foto) {
+    public void setFoto(InputStream foto) {
         this.foto = foto;
     }
 
