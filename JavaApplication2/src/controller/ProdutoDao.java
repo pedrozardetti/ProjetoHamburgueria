@@ -171,7 +171,7 @@ public class ProdutoDao extends ConectarDao {
     
     public List<Produto> selectBebida() {
         
-        String sql = "SELECT * FROM PRODUTO WHERE TIPO = BEBIDA";
+        String sql = "SELECT * FROM PRODUTO WHERE TIPO = 'BEBIDA'";
         List<Produto> lista = new ArrayList<>();
         
         try {
@@ -180,8 +180,16 @@ public class ProdutoDao extends ConectarDao {
             ResultSet resultSet = preparedStamement.executeQuery();
             
             while (resultSet.next()) {
-                lista.add(new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), TipoProduto.valueOf(resultSet.getString("Tipo")), (FileInputStream)resultSet.getBlob("Foto"), 0));
-            }
+            Blob blob = resultSet.getBlob("FOTO");
+            int blobLength = (int) blob.length();  
+            byte[] blobAsBytes = blob.getBytes(1, blobLength);
+
+            
+            blob.free();
+
+            ByteArrayInputStream bis = new ByteArrayInputStream(blobAsBytes);
+            lista.add(new Produto(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getDouble("preco"), resultSet.getString("descricao"), TipoProduto.valueOf(resultSet.getString("Tipo")), bis, blobLength));
+        }
             return lista;
         } catch (Exception e) {
             System.out.println("Não conseguiu pegar os produtos!");
