@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.PedidoDao;
 import controller.ProdutoDao;
 import controller.UsuarioDao;
 import java.awt.BorderLayout;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +32,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import model.ItemProduto;
 
 /**
  *
@@ -37,11 +40,18 @@ import javax.swing.ScrollPaneConstants;
  */
 public class TelaMenuPrincipal extends javax.swing.JFrame {
 
+    List<ItemProduto> carrinho = new ArrayList<>();
+
     /**
      * Creates new form TelaMenuPrincipal
      */
     public TelaMenuPrincipal() {
         initComponents();
+        
+        atualizarProdutoPainel(carrinho);
+        atualizarAcompanhamento();
+        atualizarBebida();
+
     }
 
     /**
@@ -71,7 +81,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -333,6 +342,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jp1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1019, 14, 31, 30));
 
         jPanel5.setBackground(new java.awt.Color(238, 238, 238));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
@@ -342,15 +352,12 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 375, 95, 39));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("🛎 Pickup");
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("R$45");
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 375, 95, 39));
 
         jButton3.setBackground(new java.awt.Color(0, 153, 0));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -361,47 +368,12 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 536, 202, 38));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Nº do Pedido");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel18))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(122, 122, 122)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-        );
+        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 30, -1, -1));
 
         jp1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 92, -1, 590));
 
@@ -857,12 +829,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void tab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab1MouseClicked
-        atualizarProdutoPainel(evt);
+
+        PedidoDao pedidoDao = new PedidoDao();
+        pedidoDao.criarTabelaItemProd();
+        atualizarProdutoPainel(carrinho);
         atualizarAcompanhamento();
         atualizarBebida();
+        System.out.println(carrinho);
     }//GEN-LAST:event_tab1MouseClicked
 
-    private void atualizarProdutoPainel(java.awt.event.MouseEvent evt) {
+    private void atualizarProdutoPainel(List<ItemProduto> carrinho) {
         jp1.setVisible(true);
         jp2.setVisible(false);
         jp3.setVisible(false);
@@ -917,11 +893,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add (3).png"))); // NOI18N
             botao.setBorder(null);
 
+            final Produto produtoSelecionado = selectHamburguere;
+
             botao.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    
-                    System.out.println("Botão Clicado");
+
+                    carrinho.add(new ItemProduto(produtoSelecionado.getNome(), produtoSelecionado.getPreco(), produtoSelecionado.getId()));
+                    atualizarCarrinho(evt, carrinho);
+
                 }
+
             });
 
             jPanelProduto.add(botao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 30, 30));
@@ -944,6 +925,26 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jPanel8.revalidate();
         jPanel8.repaint();
+    }
+
+    private void atualizarCarrinho(java.awt.event.ActionEvent evt, List<ItemProduto> carrinho) {
+        System.out.println("Entrou aqui por aquele motivo");
+        JLabel exibir = new javax.swing.JLabel();
+
+        exibir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        exibir.setForeground(new java.awt.Color(0, 0, 0));
+
+        exibir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        System.out.println("Chegou aqui 2");
+        carrinho.forEach(produto -> {
+            exibir.setText(produto.getNome());
+        });
+        jPanel5.add(exibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 52, 72, 48));
+
+        jPanel5.revalidate();
+        jPanel5.repaint();
     }
 
     private void atualizarAcompanhamento() {
@@ -999,8 +1000,12 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add (3).png"))); // NOI18N
             botao.setBorder(null);
 
+            final Produto acompanhamentoSelecionado = acompanhamento;
+            
             botao.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    carrinho.add(new ItemProduto(acompanhamentoSelecionado.getNome(), acompanhamentoSelecionado.getPreco(), acompanhamentoSelecionado.getId()));
+                    atualizarCarrinho(evt, carrinho);
                 }
             });
 
@@ -1025,7 +1030,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel9.repaint();
 
     }
-    
+
     private void atualizarBebida() {
         jp1.setVisible(true);
         jp2.setVisible(false);
@@ -1078,9 +1083,13 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             botao.setBackground(new java.awt.Color(204, 204, 204));
             botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add (3).png"))); // NOI18N
             botao.setBorder(null);
-
+            
+            final Produto bebidaSelecionada = bebida;
             botao.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    
+                    carrinho.add(new ItemProduto(bebidaSelecionada.getNome(), bebidaSelecionada.getPreco(), bebidaSelecionada.getId()));
+                    atualizarCarrinho(evt, carrinho);
                 }
             });
 
@@ -1103,7 +1112,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jPanel11.revalidate();
         jPanel11.repaint();
-        
+
     }
     private void tab2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab2MouseClicked
         jp2.setVisible(true);
@@ -1183,8 +1192,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         }
 
-        
-
 
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
@@ -1237,7 +1244,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         produtoDao.atualizarProduto(Integer.parseInt(searchId.getText()), searchedName.getText(), Double.parseDouble(searchedPreco.getText()), searchedDescricao.getText());
         tab4MouseClicked(evt);
 
-        
+
     }//GEN-LAST:event_atualizarBtnMouseClicked
 
     private void deletarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarBtnMouseClicked
@@ -1259,8 +1266,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                     "Não foi possível remover o produto", "Erro de Operação",
                     JOptionPane.WARNING_MESSAGE);
         }
-
-       
 
 
     }//GEN-LAST:event_deletarBtnMouseClicked
@@ -1395,7 +1400,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
