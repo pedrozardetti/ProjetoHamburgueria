@@ -3,11 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
-
+import java.sql.*;
 /**
  *
  * @author pedro
  */
-public class PedidoDao extends ConectarDao{
+public class PedidoDao extends ConectarDao {
+
     
 }
