@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+*/
 package model;
 
 import java.util.ArrayList;
@@ -11,26 +12,32 @@ import model.enums.TipoPedido;
 
 /**
  *
- * @author pedro
- */
-public class Pedido {
+ 
+@author pedro*/
+public final class Pedido {
 
     private int id;
     private double total;
     private TipoPedido status;
-    private List<ItemProduto> produtos;
+    private List<ItemProduto> produtos = new ArrayList<>();
 
-    public Pedido(int id, TipoPedido status) {
-        this.id = id;
-        this.total = getTotal();
-        this.status = status;
-        this.produtos = new ArrayList<>();
+    public Pedido() {
+        this.status = TipoPedido.ANDAMENTO;
     }
 
-    public Pedido(double total, TipoPedido status) {
+
+
+    public Pedido(int id, double total, TipoPedido status) {
+        this.id = id;
         this.total = total;
         this.status = status;
-        this.produtos = new ArrayList<>();
+
+    }
+
+    public Pedido(TipoPedido status, List<ItemProduto> produtos) {
+        this.total = getTotal();
+        this.status = status;
+        this.produtos = produtos;
     }
 
     public int getId() {
@@ -46,7 +53,10 @@ public class Pedido {
                    .mapToDouble(ItemProduto::getPreco)
                    .sum();
 }
-
+    
+    public double getTotalFromBd() {
+        return total;
+    }
 
     public void setTotal(double total) {
         this.total = total;
@@ -68,7 +78,7 @@ public class Pedido {
         this.produtos = produtos;
     }
 
-   
-    
-    
+
+
+
 }
