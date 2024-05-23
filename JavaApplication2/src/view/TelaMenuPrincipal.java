@@ -997,7 +997,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jPanel5.remove(labelProduto);
 
-        // Define a posição Y inicial
         int y = 10;
 
         System.out.println("Chegou aqui 2");
@@ -1007,14 +1006,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             labelProduto.setForeground(new java.awt.Color(0, 0, 0));
             labelProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            // Adiciona o JLabel ao painel com a posição Y atualizada
             jPanel5.add(labelProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, y, 120, 48));
 
-            // Atualiza a posição Y para o próximo JLabel
             y += 25;
         }
 
-        // Atualiza o painel para refletir as mudanças
         jPanel5.revalidate();
         jPanel5.repaint();
     }
@@ -1098,8 +1094,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         scrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
-                this.thumbColor = Color.BLACK; // Cor do thumb (barra de rolagem)
-                this.trackColor = Color.WHITE; // Cor da pista (fundo do scrollbar)
+                this.thumbColor = Color.BLACK;
+                this.trackColor = Color.WHITE;
             }
         });
         jPanel9.setLayout(new BorderLayout());
@@ -1120,7 +1116,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel11.repaint();
 
         JPanel produtosPanel = new JPanel();
-        produtosPanel.setLayout(new BoxLayout(produtosPanel, BoxLayout.X_AXIS)); // Alterado para X_AXIS
+        produtosPanel.setLayout(new BoxLayout(produtosPanel, BoxLayout.X_AXIS));
 
         ProdutoDao produtoDao = new ProdutoDao();
         List<Produto> bebidas = produtoDao.selectBebida();
@@ -1190,8 +1186,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         scrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
-                this.thumbColor = Color.BLACK; // Cor do thumb (barra de rolagem)
-                this.trackColor = Color.WHITE; // Cor da pista (fundo do scrollbar)
+                this.thumbColor = Color.BLACK;
+                this.trackColor = Color.WHITE;
             }
         });
 
@@ -1226,14 +1222,14 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         for (Pedido pedido : pedidos) {
             JPanel jpanelProduto = new JPanel();
             jpanelProduto.setBackground(new java.awt.Color(238, 238, 238));
-            jpanelProduto.setLayout(new BorderLayout()); // Usar BorderLayout para posicionar o botão
-            jpanelProduto.setPreferredSize(new Dimension(300, 300)); // Ajuste a largura e altura conforme necessário
-            jpanelProduto.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Adiciona uma borda para separar os painéis
+            jpanelProduto.setLayout(new BorderLayout());
+            jpanelProduto.setPreferredSize(new Dimension(300, 300));
+            jpanelProduto.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
             // Painel interno para conter as labels
             JPanel labelsPanel = new JPanel();
             labelsPanel.setLayout(new BoxLayout(labelsPanel, BoxLayout.Y_AXIS));
-            labelsPanel.setBackground(new java.awt.Color(238, 238, 238)); // Mantém o fundo consistente
+            labelsPanel.setBackground(new java.awt.Color(238, 238, 238));
 
             JLabel n = new JLabel();
             n.setFont(new java.awt.Font("Segoe UI", 1, 14));
@@ -1250,7 +1246,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             status.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/processing-time (1).png")));
             status.setText("Status: " + pedido.getStatus().toString());
 
-            int espacoVertical = 60; // Espaço vertical em pixels, ajuste conforme necessário
+            int espacoVertical = 60;
 
             labelsPanel.add(n);
             labelsPanel.add(Box.createVerticalStrut(espacoVertical));
@@ -1258,45 +1254,41 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             labelsPanel.add(Box.createVerticalStrut(espacoVertical));
             labelsPanel.add(status);
 
-            // Adiciona o painel de labels ao centro do jpanelProduto
             jpanelProduto.add(labelsPanel, BorderLayout.CENTER);
 
-            // Cria e personaliza o JButton
             JButton button = new JButton("Atualizar situacao");
             button.setOpaque(true);
             button.setBorderPainted(false);
             button.setContentAreaFilled(true);
             button.setBackground(Color.WHITE);
-            button.setFocusPainted(false); // Remove as linhas de foco
+            button.setFocusPainted(false);
 
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Atualiza a situação do pedido
+
                     pedidoDao.updateSituacao(pedido.getId());
 
-                    // Reexibe a lista de pedidos
                     selectPedidos();
                 }
             });
 
-            // Cria e posiciona o JButton na extremidade inferior direita
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-            buttonPanel.setBackground(new java.awt.Color(238, 238, 238)); // Mantém o fundo consistente
+            buttonPanel.setBackground(new java.awt.Color(238, 238, 238));
             buttonPanel.add(button);
 
             jpanelProduto.add(buttonPanel, BorderLayout.SOUTH);
 
             gbc.gridx = col;
             gbc.gridy = row;
-            gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento entre os painéis
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START; // Alinha ao topo e início (esquerda)
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
 
             produtosPanel.add(jpanelProduto, gbc);
 
             col++;
-            if (col == 3) { // Mudar para a próxima linha após 3 colunas
+            if (col == 3) {
                 col = 0;
                 row++;
             }
@@ -1310,8 +1302,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jscroll.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
-                this.thumbColor = Color.BLACK; // Cor do thumb (barra de rolagem)
-                this.trackColor = Color.WHITE; // Cor da pista (fundo do scrollbar)
+                this.thumbColor = Color.BLACK;
+                this.trackColor = Color.WHITE;
             }
         });
 
@@ -1523,10 +1515,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         Pedido pedido = new Pedido(TipoPedido.ANDAMENTO, carrinho);
         pedidoDao.insertPedido(pedido);
 
-        // Limpa o carrinho
         carrinho.clear();
 
-        // Remove todos os JLabels do painel
         Component[] components = jPanel5.getComponents();
         for (Component component : components) {
             if (component instanceof JLabel) {
@@ -1534,11 +1524,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             }
         }
 
-        // Atualiza o painel para refletir as mudanças
         jPanel5.revalidate();
         jPanel5.repaint();
 
-        // Mostra uma mensagem de sucesso
         JOptionPane.showMessageDialog(null, "O pedido foi cadastrado com sucesso!");
 
 
