@@ -8,6 +8,8 @@ package model.enums;
  *
  * @author pedro
  */
-public class TipoPedido {
-    
+public enum TipoPedido {
+    ANDAMENTO, CONCLUIDO;
 }
+
+
