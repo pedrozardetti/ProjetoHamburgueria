@@ -9,8 +9,10 @@ import controller.ProdutoDao;
 import controller.UsuarioDao;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -25,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -58,6 +61,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     PedidoDao pedidoDao = new PedidoDao();
     List<ItemProduto> carrinho = new ArrayList<>();
     JLabel exibir = new javax.swing.JLabel();
+    JLabel labelProduto = new JLabel();
 
     /**
      * Creates new form TelaMenuPrincipal
@@ -105,17 +109,18 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jp2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jp3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
@@ -128,6 +133,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         fotoField = new javax.swing.JLabel();
         btnFoto = new javax.swing.JButton();
         tipoProduto = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
         jp4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -245,6 +251,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
 
         tab1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tab1.setForeground(new java.awt.Color(0, 0, 0));
         tab1.setText("Cadastrar Pedidos");
         tab1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -272,6 +279,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tab2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tab2.setForeground(new java.awt.Color(0, 0, 0));
         tab2.setText("Ver Pedidos");
         tab2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -299,6 +307,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         tab3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tab3.setForeground(new java.awt.Color(0, 0, 0));
         tab3.setText("Cadastrar Produtos");
         tab3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -326,6 +335,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         tab4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tab4.setForeground(new java.awt.Color(0, 0, 0));
         tab4.setText("Ver Produtos");
         tab4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -358,6 +368,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
 
         btnSair.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSair.setForeground(new java.awt.Color(0, 0, 0));
         btnSair.setText("Sair");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -419,10 +430,12 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("MY ORDER");
         jp1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 80));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("X");
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -448,17 +461,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 202, 38));
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 540, 216, 38));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel18.setText("Items:");
-        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel20.setText("Pedido");
-        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 30, -1, -1));
-
-        jp1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 92, -1, 590));
+        jp1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, 220, 590));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -470,16 +475,19 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jp1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 730, 280));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star (2).png"))); // NOI18N
         jLabel19.setText("Hambúrgueres");
         jp1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star (2).png"))); // NOI18N
         jLabel33.setText("Bebidas");
         jp1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 710, -1, 30));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star (2).png"))); // NOI18N
         jLabel34.setText("Acompanhamentos");
         jp1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, 30));
@@ -489,6 +497,17 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jp1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 760, 730, 240));
 
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkout (1).png"))); // NOI18N
+        jLabel20.setText("Pedido");
+        jp1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 100, 30));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Items:");
+        jp1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 100, 60, 20));
+
         getContentPane().add(jp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 1100));
 
         jp2.setBackground(new java.awt.Color(255, 255, 255));
@@ -496,11 +515,24 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ver Pedidos");
         jp2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 0, -1, 95));
 
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jp2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 101, 983, 763));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("X");
+        jLabel11.setPreferredSize(new java.awt.Dimension(16, 32));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jp2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1019, 14, 31, 30));
 
         getContentPane().add(jp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 0, 1050, 1100));
 
@@ -579,6 +611,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
         jp3.add(tipoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 120, 40));
 
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("X");
+        jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel21MouseClicked(evt);
+            }
+        });
+        jp3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1019, 14, 31, 30));
+
         getContentPane().add(jp3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1050, 1100));
 
         jp4.setBackground(new java.awt.Color(255, 255, 255));
@@ -586,6 +628,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Ver Produto");
 
         JTable.setBackground(new java.awt.Color(102, 102, 102));
@@ -629,6 +672,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         }
 
         atualizarBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        atualizarBtn.setForeground(new java.awt.Color(0, 0, 0));
         atualizarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh-page-option (1).png"))); // NOI18N
         atualizarBtn.setText("Atualizar");
         atualizarBtn.setBorderPainted(false);
@@ -639,6 +683,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
 
         deletarBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        deletarBtn.setForeground(new java.awt.Color(0, 0, 0));
         deletarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash-can (1).png"))); // NOI18N
         deletarBtn.setText("Deletar");
         deletarBtn.setBorderPainted(false);
@@ -657,6 +702,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         searchedPreco.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Procurar por ID");
 
         searchedName.setBackground(new java.awt.Color(102, 102, 102));
@@ -686,6 +732,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jLabel13.setText("____________");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("X");
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -694,12 +741,15 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Nome");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Preço");
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Descrição");
 
         procurarBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconProduct (2).png"))); // NOI18N
@@ -941,18 +991,30 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
     private void atualizarCarrinho(java.awt.event.ActionEvent evt, List<ItemProduto> carrinho) {
         System.out.println("Entrou aqui por aquele motivo");
-        exibir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
+        exibir.setFont(new java.awt.Font("Segoe UI", 1, 12));
         exibir.setForeground(new java.awt.Color(0, 0, 0));
-
         exibir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        System.out.println("Chegou aqui 2");
-        carrinho.forEach(produto -> {
-            exibir.setText(produto.getNome());
-        });
-        jPanel5.add(exibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 52, 72, 48));
+        jPanel5.remove(labelProduto);
 
+        // Define a posição Y inicial
+        int y = 10;
+
+        System.out.println("Chegou aqui 2");
+        for (ItemProduto produto : carrinho) {
+            labelProduto = new JLabel(produto.getNome());
+            labelProduto.setFont(new java.awt.Font("Segoe UI", 1, 12));
+            labelProduto.setForeground(new java.awt.Color(0, 0, 0));
+            labelProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            // Adiciona o JLabel ao painel com a posição Y atualizada
+            jPanel5.add(labelProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, y, 120, 48));
+
+            // Atualiza a posição Y para o próximo JLabel
+            y += 25;
+        }
+
+        // Atualiza o painel para refletir as mudanças
         jPanel5.revalidate();
         jPanel5.repaint();
     }
@@ -1210,9 +1272,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    // Atualiza a situação do pedido
                     pedidoDao.updateSituacao(pedido.getId());
 
+                    // Reexibe a lista de pedidos
+                    selectPedidos();
                 }
             });
 
@@ -1455,19 +1519,38 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
 
         Pedido pedido = new Pedido(TipoPedido.ANDAMENTO, carrinho);
         pedidoDao.insertPedido(pedido);
+
+        // Limpa o carrinho
         carrinho.clear();
-        jPanel5.remove(exibir);
+
+        // Remove todos os JLabels do painel
+        Component[] components = jPanel5.getComponents();
+        for (Component component : components) {
+            if (component instanceof JLabel) {
+                jPanel5.remove(component);
+            }
+        }
+
+        // Atualiza o painel para refletir as mudanças
         jPanel5.revalidate();
         jPanel5.repaint();
 
-        JOptionPane.showMessageDialog(null,
-                "O pedido foi cadastrado com sucesso!");
+        // Mostra uma mensagem de sucesso
+        JOptionPane.showMessageDialog(null, "O pedido foi cadastrado com sucesso!");
+
 
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel21MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1547,6 +1630,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1557,6 +1641,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
