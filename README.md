@@ -88,4 +88,4 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICEN
 
 Pedro Zardetti - pedrozardetti1@gmail.com
 
-Link do Projeto: (https://github.com/pedrozardetti/ProjetoHamburgueria)
+Link do Projeto: https://github.com/pedrozardetti/ProjetoHamburgueria
